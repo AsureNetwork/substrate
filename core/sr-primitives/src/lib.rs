@@ -145,14 +145,16 @@ impl From<f32> for Permill {
 	}
 }
 
+impl From<Permill> for codec::Compact<u32> {
+	fn from(x: Permill) -> codec::Compact<u32> { codec::Compact(x.0) }
+}
+
 impl From<codec::Compact<u32>> for Permill {
 	fn from(x: codec::Compact<u32>) -> Permill { Permill(x.0) }
 }
 
-impl Into<codec::Compact<u32>> for Permill {
-	fn into(self) -> codec::Compact<u32> {
-		codec::Compact(self.0)
-	}
+impl codec::HasCompact for Permill {
+	type Type = codec::Compact<u32>;
 }
 
 /// Perbill is parts-per-billion. It stores a value between 0 and 1 in fixed point and
@@ -210,14 +212,16 @@ impl From<f32> for Perbill {
 	}
 }
 
+impl From<Perbill> for codec::Compact<u32> {
+	fn from(x: Perbill) -> codec::Compact<u32> { codec::Compact(x.0) }
+}
+
 impl From<codec::Compact<u32>> for Perbill {
 	fn from(x: codec::Compact<u32>) -> Perbill { Perbill(x.0) }
 }
 
-impl Into<codec::Compact<u32>> for Perbill {
-	fn into(self) -> codec::Compact<u32> {
-		codec::Compact(self.0)
-	}
+impl codec::HasCompact for Perbill {
+	type Type = codec::Compact<u32>;
 }
 
 /// Ed25519 signature verify.

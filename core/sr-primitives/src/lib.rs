@@ -664,4 +664,23 @@ mod tests {
 		let permill: super::Perbill = decoded.into();
 		assert_eq!(permill, super::Perbill(n));
 	}
+
+	#[derive(Encode, Decode, PartialEq, Eq, Debug)]
+	struct WithCompact<T: codec::HasCompact> {
+		data: T,
+	}
+
+	#[test]
+	fn test_has_compact_permill() {
+		let data = WithCompact { data: super::Permill(1) };
+		let encoded = data.encode();
+		assert_eq!(data, WithCompact::<super::Permill>::decode(&mut &encoded[..]).unwrap());
+	}
+
+	#[test]
+	fn test_has_compact_perbill() {
+		let data = WithCompact { data: super::Perbill(1) };
+		let encoded = data.encode();
+		assert_eq!(data, WithCompact::<super::Perbill>::decode(&mut &encoded[..]).unwrap());
+	}
 }

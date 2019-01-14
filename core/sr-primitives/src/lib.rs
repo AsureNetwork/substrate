@@ -648,7 +648,7 @@ mod tests {
 		assert_eq!(serde_json::to_string(&ex).unwrap(), "\"0x1001020304\"".to_owned());
 	}
 
-        #[test]
+	#[test]
 	fn compact_permill_perbill_encoding() {
 		let n = 10;
 

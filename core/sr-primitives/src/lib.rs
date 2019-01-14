@@ -646,7 +646,7 @@ mod tests {
 	fn opaque_extrinsic_serialization() {
 		let ex = super::OpaqueExtrinsic(vec![1, 2, 3, 4]);
 		assert_eq!(serde_json::to_string(&ex).unwrap(), "\"0x1001020304\"".to_owned());
-        }
+	}
 
         #[test]
 	fn compact_permill_perbill_encoding() {
